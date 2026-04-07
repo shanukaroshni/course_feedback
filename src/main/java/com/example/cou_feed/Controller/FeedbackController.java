@@ -1,8 +1,5 @@
-package com.example.loginvalidator.controller;
+package com.example.cou_feed.Controller;
 
-import com.example.loginvalidator.model.Feedback;
-import com.example.loginvalidator.service.FeedbackService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,23 +7,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class FeedbackController {
 
-    @Autowired
-    private FeedbackService service;
-
     @GetMapping("/feedback")
-    public String showForm(Model model) {
-        model.addAttribute("feedback", new Feedback());
-        return "feedback";
+    public String showForm() {
+        return "feedback"; 
     }
 
     @PostMapping("/submitFeedback")
     public String submitFeedback(@ModelAttribute Feedback feedback, Model model) {
-        
-        service.saveFeedback(feedback);
 
-        // Add acknowledgment message
-        model.addAttribute("message", "Thank you! Your feedback has been submitted successfully.");
+        // Add success message
+        model.addAttribute("message", "Feedback submitted successfully!");
 
-        return "acknowledgment";
-    }
+
+}
 }
